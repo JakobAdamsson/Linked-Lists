@@ -99,10 +99,32 @@ class Linklst:
         
                 
                 
+    def update(self, value, new_val):
+        """Updates value of a node"""
+        new_node = Node(value)
+        cur_node = self.first
+        prev_node = self.prev_node(cur_node.value)
+        replaced = False
+        while cur_node.next != None:
+            if replaced == False:
+                if cur_node.value == value:
+                    cur_node.value = new_val
+                    replaced = True
+            cur_node = cur_node.next
+        cur_node.next = new_node
+        
                 
+                        
 
 lst = [2,3,5,67,98,92,1,2,3,5,7]
 link = Linklst()
 for i in lst:
     link.append(i)
+
+
+link.update(67, 13)
+
+link.show_link()
+
+
 
