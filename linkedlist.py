@@ -38,7 +38,7 @@ class Linklst:
         cur_node = self.first
         while cur_node.next != None:
             if cur_node.next.value == node.value:
-                return cur_node.value
+                return cur_node
             cur_node = cur_node.next
         cur_node.next = node
 
@@ -87,20 +87,10 @@ class Linklst:
         
         if prev_value != None:
             prev_value.next == cur_value2
-<<<<<<< HEAD
-        
-        else:
-            self.head = prev_value
-        
-        if prev_value2 != None:
-            prev_value2.next == cur_value
-       
-=======
         else:
             self.head = prev_value
         if prev_value2 != None:
             prev_value2.next == cur_value
->>>>>>> 0f35116b3077ad16e66a20816558dbd46852fe2e
         else:
             self.head = cur_value
         temp = cur_value.next
@@ -115,11 +105,4 @@ lst = [2,3,5,67,98,92,1,2,3,5,7]
 link = Linklst()
 for i in lst:
     link.append(i)
-<<<<<<< HEAD
-link.peek(5)
-=======
-link.show_link()
-#link.swap(98,1)
-#print(link.prev_node(98))
-#link.show_link()
->>>>>>> 0f35116b3077ad16e66a20816558dbd46852fe2e
+
