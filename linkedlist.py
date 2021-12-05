@@ -18,9 +18,11 @@ class Linklst:
     
     def show_link(self):
         node = self.first
+        prev_ele = self.prev_node(node.value)
         while node.next != None:
-            print(node.value, node.next.value)
+            print(prev_ele,node.value, node.next.value)
             node = node.next
+            prev_ele = self.prev_node(node.value)
     
     def count_elems(self):
         node = self.first
@@ -36,7 +38,7 @@ class Linklst:
         cur_node = self.first
         while cur_node.next != None:
             if cur_node.next.value == node.value:
-                return cur_node
+                return cur_node.value
             cur_node = cur_node.next
         cur_node.next = node
 
@@ -66,22 +68,35 @@ class Linklst:
                 
     
     def swap(self, value, value2):
-        node = Node(value)
-        node2 = Node(value2)
-        node_prev = self.prev_node(value)
-        node2_prev = self.prev_node(value2)
-        cur_node = self.first
-        while cur_node.next != None:
-            if cur_node.value == node.value:
-                node = node2
-                node.prev = node2_prev
-                node.next = node2.next
-                node2 = cur_node
-                node2.prev = node_prev
-                node2.next = node.next
-                break
-            cur_node = cur_node.next
-        cur_node.next = node
+        if value == value2:
+            return
+
+        prev_value = None
+        cur_value = self.first
+        while cur_value != None and cur_value.value != value:
+            prev_value = cur_value
+            cur_value = cur_value.next
+        
+        prev_value2 = None
+        cur_value2 = self.first
+        while cur_value2 != None and cur_value2.value != value2:
+            prev_value2 = cur_value2
+            cur_value2 = cur_value2.next
+        if cur_value == None or cur_value2 == None:
+            return
+        
+        if prev_value != None:
+            prev_value.next == cur_value2
+        else:
+            self.head = prev_value
+        if prev_value2 != None:
+            prev_value2.next == cur_value
+        else:
+            self.head = cur_value
+        temp = cur_value.next
+        cur_value.next = cur_value2.next
+        cur_value2.next = temp
+        
                 
                 
                 
@@ -91,8 +106,6 @@ link = Linklst()
 for i in lst:
     link.append(i)
 link.show_link()
-print('---------')
-link.swap(98,1)
-link.show_link()
+#link.swap(98,1)
 #print(link.prev_node(98))
 #link.show_link()
